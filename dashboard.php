@@ -3,7 +3,12 @@
 * Page: Landing Page
 */
 include('authentication.php');
-include('config.php');
+
+// access restriction
+ if(empty($_SESSION['username'])) {
+     header('location: index.php');
+ }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,14 +33,7 @@ include('config.php');
       <!--mobile-->
       <div class="mobile">
         <!--login form-->
-        <form action="index.php" method="POST">
-         <!--errors-->
-         <?php include('errors.php'); ?>
-          <input type="text" id="username" name="username" placeholder="username" value=""/> 
-          <input type="password" id="password" name="password" placeholder="password" value=""/>
-          <button type="submit" class="btn" name="login">login</button>
-          <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign Up Now</a></p>
-        </form>
+        <h1>Logged In</h1>
       </div>
     </div>
   </section>

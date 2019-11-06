@@ -24,6 +24,16 @@ Index Styling
       background: white;
       position: relative;
       border-radius: 50px;
+      
+      form {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+      }
+      
     }
     
     .mobile:after {
@@ -33,7 +43,7 @@ Index Styling
       width: 500px;
       height: 896px;
       content: '';
-      z-index: 1;
+      z-index: -1;
       left: 50%;
       top: 50%;
       transform: translate(-50%,-50%);

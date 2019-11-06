@@ -3,7 +3,7 @@
 * Page: Landing Page
 */
 include('authentication.php');
-include('config.php');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,13 +28,15 @@ include('config.php');
       <!--mobile-->
       <div class="mobile">
         <!--login form-->
-        <form action="index.php" method="POST">
+        <form action="register.php" method="POST">
          <!--errors-->
          <?php include('errors.php'); ?>
           <input type="text" id="username" name="username" placeholder="username" value=""/> 
-          <input type="password" id="password" name="password" placeholder="password" value=""/>
-          <button type="submit" class="btn" name="login">login</button>
-          <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign Up Now</a></p>
+          <input type="text" id="email" name="email" placeholder="email" value=""/>
+          <input type="password" id="password_1" name="password_1" placeholder="password" value=""/>
+          <input type="password" id="password_2" name="password_2" placeholder="confirm password"/>
+          <input type="checkbox" name="termsandconditions" id="termsandconditions"/>
+          <button type="submit" class="btn" name="register">register</button>
         </form>
       </div>
     </div>
