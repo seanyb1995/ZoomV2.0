@@ -18,8 +18,17 @@
 </head>
 
 <body>
-
-  <p>Hello, world!</p>
+  
+  <!--content-->
+  <section class="content">
+    <!--container-->
+    <div class="container">
+      <!--mobile-->
+      <div class="mobile">
+        
+      </div>
+    </div>
+  </section>
 
   <script src="js/jquery-3.4.1.min.js"></script>
   

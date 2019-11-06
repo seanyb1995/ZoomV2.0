@@ -7,4 +7,4 @@ sass --watch sass/style.scss:css/style.min.css --style compressed
 NOTE: DO NOT EDIT IF IN CSS FILE: See sass file
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-*//*# sourceMappingURL=style.min.css.map */
+*/.content{display:grid;grid-template-columns:2fr 4fr 4fr 2fr;grid-template-rows:auto}.content .container{grid-column:1/span 4;grid-row:1/span 1;position:relative;min-height:100vh;height:1000px;max-height:1100px;display:flex;justify-content:center;align-items:center;flex-direction:column}.content .container .mobile{width:375px;height:812px;background:#fff;position:relative;border-radius:50px}.content .container .mobile:after{background-image:url("/img/png/iPhone 11 Pro Max.png");background-size:500px 896px;position:absolute;width:500px;height:896px;content:"";z-index:1;left:50%;top:50%;transform:translate(-50%, -50%)}@media only screen and (min-device-width: 375px)and (max-device-width: 812px)and (-webkit-min-device-pixel-ratio: 3){.content .container .mobile{width:100%;height:100%}.content .container .mobile:after{background-image:none}}/*# sourceMappingURL=style.min.css.map */
