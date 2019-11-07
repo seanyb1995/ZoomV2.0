@@ -17,6 +17,8 @@ include('config.php');
 
   <link href="css/normalize.css" rel="stylesheet">
   <link href="css/style.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/845c12c9ef.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -31,9 +33,31 @@ include('config.php');
         <form action="index.php" method="POST">
          <!--errors-->
          <?php include('errors.php'); ?>
-          <input type="text" id="username" name="username" placeholder="username" value=""/> 
-          <input type="password" id="password" name="password" placeholder="password" value=""/>
-          <button type="submit" class="btn" name="login">login</button>
+          <!--username input-->
+          <div class="input">
+            <!--icon-->
+            <div class="icon">
+              <i class="far fa-user"></i>
+            </div>
+            <!--username-->
+            <div class="text">
+              <input type="text" id="username" name="username" value="" required/>
+              <label>Username</label>
+            </div>
+          </div>
+          <!--password input-->
+          <div class="input">
+            <!--icon-->
+            <div class="icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <!--password-->
+            <div class="password">
+              <input type="password" id="password" name="password" value="" required/>
+              <label>Password</label>
+            </div>
+          </div>
+          <button type="submit" class="login" name="login">Login</button>
           <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign Up Now</a></p>
         </form>
       </div>
