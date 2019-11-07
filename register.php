@@ -33,16 +33,28 @@ include('authentication.php');
         <form action="register.php" method="POST">
          <!--errors-->
          <?php include('errors.php'); ?>
-         <!--username input-->
+         <!--first name input-->
          <div class="input">
             <!--icon-->
             <div class="icon">
               <i class="far fa-user"></i>
             </div>
-            <!--username-->
+            <!--first name-->
             <div class="text">
-              <input type="text" id="username" name="username" value="" required/>
-              <label>Username</label>
+              <input type="text" id="firstname" name="firstname" value="" required/>
+              <label>First name</label>
+            </div>
+          </div>
+         <!--last name input-->
+         <div class="input">
+            <!--icon-->
+            <div class="icon">
+              <i class="far fa-user"></i>
+            </div>
+            <!--last name-->
+            <div class="text">
+              <input type="text" id="lastname" name="lastname" value="" required/>
+              <label>Last name</label>
             </div>
           </div>
          <!--email input-->
@@ -81,7 +93,10 @@ include('authentication.php');
               <label>Confirm password</label>
             </div>
           </div>
-          <input type="checkbox" name="termsandconditions" id="termsandconditions"/>
+          <div class="terms">
+            <p>I have read and agree to <a href="#">Terms and Conditions</a></p>
+            <input type="checkbox" name="termsandconditions" id="termsandconditions"/>
+          </div>
           <button type="submit" class="btn" name="register">register</button>
           <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/index.php">Sign in</a></p>       
         </form>

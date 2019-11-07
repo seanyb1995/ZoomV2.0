@@ -27,21 +27,27 @@ if(mysqli_connect_errno()) {
 
 if(isset($_POST['register'])) {     
     // Get variables
-    $username = $_POST['username'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
     $password_1 = $_POST['password_1'];
     $password_2 = $_POST['password_2'];
     $email = $_POST['email'];
     $termsandconditions = $_POST['termsandconditions'];
 
     // MYSQL injection prevention
-    $username = mysqli_real_escape_string($connection,$username);
+    $firstname = mysqli_real_escape_string($connection,$firstname);
+    $lastname = mysqli_real_escape_string($connection,$lastname);
     $password_1 = mysqli_real_escape_string($connection,$password_1);
     $password_2 = mysqli_real_escape_string($connection,$password_2);
     $email = mysqli_real_escape_string($connection,$email);
 
     // Checking form fields are filled properly
-    if (empty($username)) {
-        array_push($errors, "Username is required");
+    if (empty($firstname)) {
+        array_push($errors, "First name is required");
+    }
+  
+    if (empty($lastname)) {
+        array_push($errors, "Last name is required");
     }
 
     if (empty($email)) {
@@ -50,10 +56,6 @@ if(isset($_POST['register'])) {
 
     if (empty($password_1)) {
         array_push($errors, "Password is required");
-    }
-
-    if(strlen($username) <5) {
-        array_push($errors, "Usernames need to be 5 characters or longer");
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -78,11 +80,6 @@ if(isset($_POST['register'])) {
 
 
     if (count($errors) == 0) {
-        $query = "SELECT * FROM account WHERE username='$username'";
-        $result = mysqli_query($connection, $query);
-        if (mysqli_num_rows($result) == 1) {
-            array_push($errors, "The username is already taken");
-        }else{
             $query = "SELECT * FROM account WHERE email='$email'";
             $result = mysqli_query($connection, $query);
             if (mysqli_num_rows($result) == 1) {
@@ -90,37 +87,35 @@ if(isset($_POST['register'])) {
         }else{
             // $password = md5($password_1); // encrypt password before instoring in database
             $password = $password_1; // encrypt password before instoring in database
-            $sql = "INSERT INTO account (username, password, email)
-            VALUES ('$username', '$password', '$email')";
+            $sql = "INSERT INTO account (firstname, lastname, email, password)
+            VALUES ('$firstname', '$lastname', '$email', '$password')";
             mysqli_query($connection, $sql);
-            sleep(7.5);
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $firstname;
             $_SESSION['success'] = "You are now logged in";
             header('location: dashboard.php');
         }
     }
 }
-}
 // login
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
 
-    $username = mysqli_real_escape_string($connection,$username);
+    $email = mysqli_real_escape_string($connection,$email);
     $password = mysqli_real_escape_string($connection,$password); 
 
 
     // Checking form fields are filled properly
-    if (empty($username)) {
-        array_push($errors, "Username is required");
+    if (empty($email)) {
+        array_push($errors, "Email is required");
     }
     if (empty($password)) {
         array_push($errors, "Password is required");
     }
 
     if (count($errors) == 0) {
-        $query = "SELECT * FROM account WHERE username='$username' AND password='$password'";
+        $query = "SELECT * FROM account WHERE email='$email' AND password='$password'";
         $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result) == 1) {
             if(isset($_POST['remember'])) {
@@ -131,12 +126,11 @@ if (isset($_POST['login'])) {
             }
         }
         echo '<h3>Hello</h3>';
-        sleep(7.5);
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $email;
         $_SESSION['success'] = "You are now logged in";
         header('location: dashboard.php');  
         }else{
-            array_push($errors, "The username or password was incorrect");
+            array_push($errors, "The email or password was incorrect");
         }
     }
 

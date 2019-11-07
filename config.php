@@ -22,9 +22,10 @@ if(mysqli_connect_errno()) {
 // Create account table
 $sql = "CREATE TABLE IF NOT EXISTS account (
         id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
-        username VARCHAR(320) NOT NULL,
-        password VARCHAR(320) NOT NULL,
+        firstname VARCHAR(320) NOT NULL,
+        lastname VARCHAR(320) NOT NULL,
         email VARCHAR(320) NOT NULL,
+        password VARCHAR(320) NOT NULL,
         PRIMARY KEY (id)
         );";
     

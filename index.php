@@ -41,8 +41,8 @@ include('config.php');
             </div>
             <!--username-->
             <div class="text">
-              <input type="text" id="username" name="username" value="" required/>
-              <label>Username</label>
+              <input type="text" id="email" name="email" value="" required/>
+              <label>Email</label>
             </div>
           </div>
           <!--password input-->
