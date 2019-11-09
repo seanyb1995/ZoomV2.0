@@ -25,7 +25,8 @@ if(mysqli_connect_errno()) {
 }
 
 
-if(isset($_POST['register'])) {     
+if(isset($_POST['register'])) {  
+  
     // Get variables
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -33,7 +34,6 @@ if(isset($_POST['register'])) {
     $password_2 = $_POST['password_2'];
     $email = $_POST['email'];
     $termsandconditions = $_POST['termsandconditions'];
-    $forgotpassword = $_POST['forgotpassword'];
 
     // MYSQL injection prevention
     $firstname = mysqli_real_escape_string($connection,$firstname);
@@ -58,8 +58,8 @@ if(isset($_POST['register'])) {
     if (empty($password_1)) {
         array_push($errors, "Password is required");
     }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  
+    if (!filter_var($forgotpassword, FILTER_VALIDATE_EMAIL)) {
       array_push($errors, "Invalid email format");
     }
 
@@ -99,10 +99,12 @@ if(isset($_POST['register'])) {
 }
 // login
 if (isset($_POST['login'])) {
+  
+    // Get variables
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-
+    // MYSQL injection prevention
     $email = mysqli_real_escape_string($connection,$email);
     $password = mysqli_real_escape_string($connection,$password); 
 
@@ -111,6 +113,12 @@ if (isset($_POST['login'])) {
     if (empty($email)) {
         array_push($errors, "Email is required");
     }
+  
+    // Checking in correct email format is submitted
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      array_push($errors, "Invalid email format");
+    }
+  
     if (empty($password)) {
         array_push($errors, "Password is required");
     }
@@ -127,12 +135,13 @@ if (isset($_POST['login'])) {
             }
         }
         echo '<h3>Hello</h3>';
-        if ($result=mysqli_query($connection,$query))
-          {
+        if ($result=mysqli_query($connection,$query)) {
           // Fetch one and one row
           while ($row=mysqli_fetch_row($result))
             {
+            
             $_SESSION['name'] = $row[1];
+            
             }
           // Free result set
           mysqli_free_result($result);
@@ -145,6 +154,43 @@ if (isset($_POST['login'])) {
         }
     }
 
+}
+
+// forgot password
+if(isset($_POST['forgotpassword'])) {
+  
+  // Get variables
+  $email = $_POST['email'];
+  
+  // MYSQL injection prevention
+  $email = mysqli_real_escape_string($connection,$email);
+  
+   if (empty($email)) {
+     array_push($errors, "Email is required");
+   }
+  
+  // Checking in correct email format is submitted
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    array_push($errors, "Invalid email format");
+  }
+  
+  if (count($errors) == 0) {
+    $query = "SELECT * FROM account WHERE email='$email'";
+    $result = mysqli_query($connection, $query);
+    
+    if ($result=mysqli_query($connection,$query)) {
+      // Fetch one and one row
+      while ($row=mysqli_fetch_row($result)){
+
+        $_SESSION['recovered_password'] = $row[4];
+
+      }
+      // Free result set
+      mysqli_free_result($result);
+    }
+  
+  }
+  
 }
 
 // logout

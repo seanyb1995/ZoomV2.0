@@ -101,7 +101,7 @@ include('authentication.php');
             <p>I have read and agree to <a href="#">Terms and Conditions</a></p>
             <input type="checkbox" name="termsandconditions" id="termsandconditions"/>
           </div>
-          <button type="submit" class="btn" name="register">register</button>
+          <button type="submit" class="register" name="register">register</button>
           <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/login.php">Sign in</a></p>       
         </form>
       </div>

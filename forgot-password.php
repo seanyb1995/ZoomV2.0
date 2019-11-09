@@ -31,7 +31,7 @@ include('config.php');
       <!--mobile-->
       <div class="mobile">
         <!--login form-->
-        <form action="index.php" method="POST">
+        <form action="forgot-password.php" method="POST">
          <!--errors-->
          <?php include('errors.php'); ?>
           <!--username input-->
@@ -42,11 +42,21 @@ include('config.php');
             </div>
             <!--username-->
             <div class="text">
-              <input type="text" id="forgotpassword" name="forgotpassword" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" required/>
+              <input type="text" id="email" name="email" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" required/>
               <label>Email</label>
             </div>
           </div>
-          <button type="submit" class="login" name="login">Find</button>
+          <p>
+          <?php
+            if(isset($_SESSION["recovered_password"])) { 
+              
+            echo 'Password: ' . $_SESSION["recovered_password"]; 
+            unset($_SESSION["recovered_password"]);
+              
+            } 
+          ?>
+          </p>
+          <button type="submit" class="forgotpassword" name="forgotpassword">Find</button>
           <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/login.php">Sign in</a></p>                 
           <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign up now</a></p>
         </form>
