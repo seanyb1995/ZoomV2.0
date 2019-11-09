@@ -51,6 +51,11 @@ Index Styling
             align-items: center;
             flex-direction: column;
             width: 20%;
+            
+            .fas fa-eye-slash {
+              cursor: pointer;
+            }
+            
           }
 
           .text,
@@ -130,6 +135,21 @@ Index Styling
           font-weight: bold;
           cursor: pointer;
           margin-top: 50px;
+        }
+        
+        .support {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          width: 100%;
+          
+          .remember-me,
+          .forgot-password {
+            width: 50%;
+            text-align: center;
+          }
+          
         }
         
       }

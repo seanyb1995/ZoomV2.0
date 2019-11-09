@@ -1,12 +1,12 @@
 <?php
 /* 
-* Page: Landing Page
+* Page: Dashboard Page
 */
 include('authentication.php');
 
 // access restriction
  if(empty($_SESSION['username'])) {
-     header('location: index.php');
+     header('location: login.php');
  }
 
 ?>
@@ -33,7 +33,8 @@ include('authentication.php');
       <!--mobile-->
       <div class="mobile">
         <!--login form-->
-        <h1>Logged In</h1>
+        <h1><?php echo $_SESSION['success']; ?></h1>
+        <p><a href="login.php?logout='1'">Logout</a></p>
       </div>
     </div>
   </section>

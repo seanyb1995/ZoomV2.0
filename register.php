@@ -80,6 +80,10 @@ include('authentication.php');
               <input type="password" id="password_1" name="password_1" value="" required/>
               <label>Password</label>
             </div>
+            <!--icon-->
+            <div class="icon">
+              <i id="hide-password" class="fas fa-eye-slash"></i>
+            </div>
           </div>
           <!--confirm password input-->
           <div class="input">
@@ -98,13 +102,15 @@ include('authentication.php');
             <input type="checkbox" name="termsandconditions" id="termsandconditions"/>
           </div>
           <button type="submit" class="btn" name="register">register</button>
-          <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/index.php">Sign in</a></p>       
+          <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/login.php">Sign in</a></p>       
         </form>
       </div>
     </div>
   </section>
 
+  <!--scripts-->
   <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/reveal-password.js"></script>
   
 </body>
 

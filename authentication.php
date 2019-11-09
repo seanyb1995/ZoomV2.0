@@ -33,6 +33,7 @@ if(isset($_POST['register'])) {
     $password_2 = $_POST['password_2'];
     $email = $_POST['email'];
     $termsandconditions = $_POST['termsandconditions'];
+    $forgotpassword = $_POST['forgotpassword'];
 
     // MYSQL injection prevention
     $firstname = mysqli_real_escape_string($connection,$firstname);
@@ -90,7 +91,7 @@ if(isset($_POST['register'])) {
             $sql = "INSERT INTO account (firstname, lastname, email, password)
             VALUES ('$firstname', '$lastname', '$email', '$password')";
             mysqli_query($connection, $sql);
-            $_SESSION['username'] = $firstname;
+            $_SESSION['name'] = $firstname;
             $_SESSION['success'] = "You are now logged in";
             header('location: dashboard.php');
         }
@@ -119,15 +120,25 @@ if (isset($_POST['login'])) {
         $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result) == 1) {
             if(isset($_POST['remember'])) {
-                setcookie("member_login", $username, time() + (86400 * 30), "/" );
+                setcookie("member_login", $email, time() + (86400 * 30), "/" );
         }else{
             if(!isset($_POST['remember'])) {
-                setcookie("member_login", $username, time() - 3600);
+                setcookie("member_login", $email, time() - 3600);
             }
         }
         echo '<h3>Hello</h3>';
+        if ($result=mysqli_query($connection,$query))
+          {
+          // Fetch one and one row
+          while ($row=mysqli_fetch_row($result))
+            {
+            $_SESSION['name'] = $row[1];
+            }
+          // Free result set
+          mysqli_free_result($result);
+        }
         $_SESSION['username'] = $email;
-        $_SESSION['success'] = "You are now logged in";
+        $_SESSION['success'] = "Welcome back! " . $_SESSION['name'];
         header('location: dashboard.php');  
         }else{
             array_push($errors, "The email or password was incorrect");
@@ -144,7 +155,7 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['destination']);
     unset($_SESSION['time']);
     unset($_SESSION['distance']);
-    header('location: login.php');
+    header('location: dashboard.php');
 
 }
 
