@@ -61,7 +61,7 @@ include('authentication.php');
          <div class="input">
             <!--icon-->
             <div class="icon">
-              <i class="far fa-user"></i>
+              <i class="far fa-envelope"></i>
             </div>
             <!--email-->
             <div class="text">
@@ -97,12 +97,25 @@ include('authentication.php');
               <label>Confirm password</label>
             </div>
           </div>
+          <!--terms and conditions-->
           <div class="terms">
-            <p>I have read and agree to <a href="#">Terms and Conditions</a></p>
-            <input type="checkbox" name="termsandconditions" id="termsandconditions"/>
+            <p>I have read and agree to the <a href="#">Terms and Conditions</a></p>
+            <!--terms and conditions checkbox-->
+            <label class="toggleButton">
+              <input type="checkbox" name="termsandconditions" id="termsandconditions">
+                <div>
+                    <svg viewBox="0 0 44 44">
+                        <path d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758" transform="translate(-2.000000, -2.000000)"></path>
+                    </svg>
+                </div>
+              </input>
+            </label>
           </div>
-          <button type="submit" class="register" name="register">register</button>
-          <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/login.php">Sign in</a></p>       
+          <button type="submit" class="register" name="register">Register</button>
+          <!--secondary navigation-->
+          <div class="secondary-nav">
+            <p>Already a member? <a href="login.php">Sign in</a></p>       
+          </div>
         </form>
       </div>
     </div>

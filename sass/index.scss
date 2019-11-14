@@ -23,15 +23,81 @@ Index Styling
       height: 812px;
       background: white;
       position: relative;
-      border-radius: 50px;
+      z-index: 1;
+      border-radius: 0 0 50px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      opacity: 1;
+      
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        -webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both 3s;
+	      animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both 3s;
+        position: absolute;
+        opacity: 0;
+        
+        #logo {
+          margin-left: 4rem;
+          width: 200px;
+          height: 200px;
+        }
+        
+        #text {
+          width: 200px;
+          height: 50px;
+          position: relative;
+          
+          path {
+            transform-origin: center;
+          }
+          
+          #z {
+            -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4s;
+                    animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4s;
+          }
+          
+          #o {
+            -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4.2s;
+                    animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4.2s;
+          }
+          
+          #o2 {
+            -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4.4s;
+                    animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4.4s;
+          }
+          
+          #m {
+            -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4.6s;
+                    animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 4.6s;
+          }
+          
+        }
+        
+      }
+      
+      .logo.animate {
+        opacity: 1;
+      }
       
       form {
-          height: 100%;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        -moz-transition: all 700ms ease-out;
+        -webkit-transition: all 700ms ease-out;
+        -o-transition: all 700ms ease-out;
+        transition: all 700ms ease-out;
+        opacity: 0;
+        margin-top: 250px;
         
         .input {
           display: flex;
@@ -44,6 +110,8 @@ Index Styling
           border-radius: 25px;
           box-shadow: 0 3px 10px -5px;
           margin-bottom: 1rem;
+          transform-origin: center;
+          transition: all 0.3s ease;
 
           .icon {
             display: flex;
@@ -105,6 +173,131 @@ Index Styling
 
         }
         
+        .input:focus-within {
+          transform: scale(1.1);
+        } 
+        
+        .support {
+          padding-top: 1rem;
+          opacity: 0;
+          
+          .remember-me {
+            color: grey;
+            $color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            
+              .toggleButton {
+                cursor: pointer;
+                display: block;
+                transform-origin: 50% 50%;
+                transform-style: preserve-3d;
+                transition: transform .14s ease;
+                margin-right: 0.5rem;
+                &:active {
+                    transform: rotateX(30deg);
+                }
+                input {
+                    display: none;
+                    & + div {
+                        border: 3px solid rgba($color, .2);
+                        border-radius: 50%;
+                        position: relative;
+                        width: 25px;
+                        height: 25px;
+                        svg {
+                            fill: none;
+                            stroke-width: 3.6;
+                            stroke: $color;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                            width: 31px;
+                            height: 31px;
+                            display: block;
+                            position: absolute;
+                            left: -3px;
+                            top: -3px;
+                            right: -3px;
+                            bottom: -3px;
+                            z-index: 1;
+                            stroke-dashoffset: 162.6 - 38;
+                            stroke-dasharray: 0 162.6 133 (162.6 - 133);
+                            transition: all .4s ease 0s;
+                        }
+                        &:before,
+                        &:after {
+                            content: '';
+                            width: 3px;
+                            height: 16px;
+                            background: $color;
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            border-radius: 5px;
+                        }
+                        &:before {
+                            opacity: 0;
+                            transform: scale(.3) translate(-50%, -50%) rotate(45deg);
+                            animation: bounceInBefore .3s linear forwards .3s;
+                        }
+                        &:after {
+                            opacity: 0;
+                            transform: scale(.3) translate(-50%, -50%) rotate(-45deg);
+                            animation: bounceInAfter .3s linear forwards .3s;
+                        }
+                    }
+                    &:checked + div {
+                        svg {
+                            stroke-dashoffset: 162.6;
+                            stroke-dasharray: 0 162.6 28 (162.6 - 28);
+                            transition: all .4s ease .2s;
+                        }
+                        &:before {
+                            opacity: 0;
+                            transform: scale(.3) translate(-50%, -50%) rotate(45deg);
+                            animation: bounceInBeforeDont .3s linear forwards 0s;
+                        }
+                        &:after {
+                            opacity: 0;
+                            transform: scale(.3) translate(-50%, -50%) rotate(-45deg);
+                            animation: bounceInAfterDont .3s linear forwards 0s;
+                        }
+                    }
+                }
+            }
+            
+          }
+          
+          .forgot-password {
+            
+            a {
+              color: grey;
+              text-decoration: none;
+            }
+            
+          }
+          
+        }
+        
+        // rename class
+        .secondary-nav {
+          text-align: center;
+          opacity: 0;
+          
+          p {
+            padding-top: 1rem;
+            
+            a {
+              font-weight: bold;
+              color: black;       
+            }
+          
+          }
+          
+        }
+        
         .terms {
           display: flex;
           justify-content: center;
@@ -116,11 +309,101 @@ Index Styling
           margin-bottom: 1rem;
           
           p {
-            font-size: 14px;
+            padding-top: 1rem;
+            font-size: 12px;
+            
+            a {
+              font-weight: bold;
+              color: black;       
+            }
+            
           }
           
           input[type="checkbox"] {
             margin-left: 25px;
+            margin-top: 1rem;
+          }
+          
+          $color: black;
+
+          .toggleButton {
+              cursor: pointer;
+              display: block;
+              transform-origin: 50% 50%;
+              transform-style: preserve-3d;
+              transition: transform .14s ease;
+              margin-top: 1rem;
+              margin-left: 1rem;
+              &:active {
+                  transform: rotateX(30deg);
+              }
+              input {
+                  display: none;
+                  & + div {
+                      border: 3px solid rgba($color, .2);
+                      border-radius: 50%;
+                      position: relative;
+                      width: 25px;
+                      height: 25px;
+                      svg {
+                          fill: none;
+                          stroke-width: 3.6;
+                          stroke: $color;
+                          stroke-linecap: round;
+                          stroke-linejoin: round;
+                          width: 31px;
+                          height: 31px;
+                          display: block;
+                          position: absolute;
+                          left: -3px;
+                          top: -3px;
+                          right: -3px;
+                          bottom: -3px;
+                          z-index: 1;
+                          stroke-dashoffset: 162.6 - 38;
+                          stroke-dasharray: 0 162.6 133 (162.6 - 133);
+                          transition: all .4s ease 0s;
+                      }
+                      &:before,
+                      &:after {
+                          content: '';
+                          width: 3px;
+                          height: 16px;
+                          background: $color;
+                          position: absolute;
+                          left: 50%;
+                          top: 50%;
+                          border-radius: 5px;
+                      }
+                      &:before {
+                          opacity: 0;
+                          transform: scale(.3) translate(-50%, -50%) rotate(45deg);
+                          animation: bounceInBefore .3s linear forwards .3s;
+                      }
+                      &:after {
+                          opacity: 0;
+                          transform: scale(.3) translate(-50%, -50%) rotate(-45deg);
+                          animation: bounceInAfter .3s linear forwards .3s;
+                      }
+                  }
+                  &:checked + div {
+                      svg {
+                          stroke-dashoffset: 162.6;
+                          stroke-dasharray: 0 162.6 28 (162.6 - 28);
+                          transition: all .4s ease .2s;
+                      }
+                      &:before {
+                          opacity: 0;
+                          transform: scale(.3) translate(-50%, -50%) rotate(45deg);
+                          animation: bounceInBeforeDont .3s linear forwards 0s;
+                      }
+                      &:after {
+                          opacity: 0;
+                          transform: scale(.3) translate(-50%, -50%) rotate(-45deg);
+                          animation: bounceInAfterDont .3s linear forwards 0s;
+                      }
+                  }
+              }
           }
           
         }
@@ -154,6 +437,94 @@ Index Styling
         
       }
       
+      #dashboard {
+        opacity: 1;
+        margin-top: 0;
+        
+        #origin {
+          position: absolute;
+          top: 50px;
+          
+        }
+        
+        #controls {
+          position: absolute;
+          bottom: 40px;
+          flex-direction: column;
+          height: auto;
+          
+          .destination-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 100%;
+            height: 50px;
+            
+            .icon {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 20%;
+
+              .fas fa-eye-slash {
+                cursor: pointer;
+              }
+
+            }
+
+            .text,
+            .password {
+              position: relative;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              width: 80%;
+
+              input[type="text"],
+              input[type="password"] {
+                border: none;
+                cursor: pointer;
+                position: absolute;
+                background: transparent;
+                box-shadow: none;
+                font-size: 14px;
+                width: 90%;
+                font-weight: bold;
+              }
+
+              label {
+                position: absolute;
+                pointer-events: none;
+                display: block;
+                transition: 0.5s;
+                font-size: 12px;
+                color: #ccc;
+              }
+
+              input[type="text"]:focus + label,
+              input[type="text"]:valid + label,
+              input[type="password"]:focus + label,
+              input[type="password"]:valid + label {
+                transform: translateY(-9px);
+              }
+
+              input[type="text"]:focus,
+              input[type="text"]:valid,
+              input[type="password"]:focus,
+              input[type="password"]:valid {
+                transform: translateY(9px);
+              }
+
+            }
+            
+          }
+          
+        }
+        
+      }
+      
     }
     
     .mobile:after {
@@ -167,6 +538,11 @@ Index Styling
       left: 50%;
       top: 50%;
       transform: translate(-50%,-50%);
+    }
+    
+    .mobile.animate {
+      -webkit-animation: slide-in-blurred-top 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+	    animation: slide-in-blurred-top 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
     }
     
   }

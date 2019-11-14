@@ -38,7 +38,7 @@ include('config.php');
           <div class="input">
             <!--icon-->
             <div class="icon">
-              <i class="far fa-user"></i>
+              <i class="far fa-envelope"></i>
             </div>
             <!--username-->
             <div class="text">
@@ -57,8 +57,11 @@ include('config.php');
           ?>
           </p>
           <button type="submit" class="forgotpassword" name="forgotpassword">Find</button>
+          <!--secondary navigation-->
+          <div class="secondary-nav">
           <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/login.php">Sign in</a></p>                 
-          <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign up now</a></p>
+            <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign up now</a></p>
+          </div>
         </form>
       </div>
     </div>

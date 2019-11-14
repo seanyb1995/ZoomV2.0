@@ -4,6 +4,7 @@
 */
 
 session_start();
+// session_destroy();
 
 $username = "";
 $email = "";
@@ -59,7 +60,11 @@ if(isset($_POST['register'])) {
         array_push($errors, "Password is required");
     }
   
-    if (!filter_var($forgotpassword, FILTER_VALIDATE_EMAIL)) {
+   if (empty($password_2)) {
+        array_push($errors, "Confirm password is required");
+    }
+  
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       array_push($errors, "Invalid email format");
     }
 
@@ -91,7 +96,7 @@ if(isset($_POST['register'])) {
             $sql = "INSERT INTO account (firstname, lastname, email, password)
             VALUES ('$firstname', '$lastname', '$email', '$password')";
             mysqli_query($connection, $sql);
-            $_SESSION['name'] = $firstname;
+            $_SESSION['username'] = $firstname;
             $_SESSION['success'] = "You are now logged in";
             header('location: dashboard.php');
         }
