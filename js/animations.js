@@ -25,6 +25,14 @@ jQuery(window).on('load', function() {
         jQuery('#dashboard').css("opacity", "1");
 
       });
+    
+      jQuery(".card").click(function() {
+
+        jQuery('.card-selected').addClass('animate');
+
+      });
+    
   }
   
-});
+}); 
+

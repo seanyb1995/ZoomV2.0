@@ -221,10 +221,42 @@ function initMap() {
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
   
+  var geocoder = new google.maps.Geocoder;
+  var infowindow = new google.maps.InfoWindow;
   new AutocompleteDirectionsHandler(map);
+  
+  document.getElementById('getLocation').addEventListener('click', function() {
+    geocodeLatLng(geocoder, map, infowindow);
+  });
+  
+  $("document").ready(function() {
+    setTimeout(function() {
+        $("#getLocation").trigger('click');
+    },10);
+  });  
+  
 }
 
-
+ function geocodeLatLng(geocoder, map, infowindow) {
+      var input = document.getElementById('latlng').value;
+      var latlngStr = input.split(',', 2);
+      var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+      geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+          if (results[0]) {
+            infowindow.setContent(results[0].formatted_address);
+            document.getElementById("origin-input").value = results[0].formatted_address;
+            infowindow.open(map);
+          } else {
+            window.alert('No results found');
+          }
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
+        }
+      });
+}
+    
+  
 /**
  * @constructor
  */
@@ -293,4 +325,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           window.alert('Directions request failed due to ' + status);
         }
       });
+  
+      document.getElementById("origin-output").value = document.getElementById("origin-input").value;
+      document.getElementById("destination-output").value = document.getElementById("destination-input").value;
+      $('#origin, #controls, #output, .card').addClass('animate');
+  
 };
