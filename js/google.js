@@ -1,38 +1,38 @@
-// current geolocation
-var x = document.getElementById("latlng");
+// // current geolocation
+// var x = document.getElementById("latlng");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
+// function getLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(showPosition, showError);
+//   } else { 
+//     x.innerHTML = "Geolocation is not supported by this browser.";
+//   }
+// }
 
-function showPosition(position) {
-  x.value = "" + position.coords.latitude + ", " + position.coords.longitude;
-}
+// $(document).ready(function(){
+//     getLocation();
+// });
 
-function showError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      x.innerHTML = "User denied the request for Geolocation."
-      break;
-    case error.POSITION_UNAVAILABLE:
-      x.innerHTML = "Location information is unavailable."
-      break;
-    case error.TIMEOUT:
-      x.innerHTML = "The request to get user location timed out."
-      break;
-    case error.UNKNOWN_ERROR:
-      x.innerHTML = "An unknown error occurred."
-      break;
-  }
-}
+// function showPosition(position) {
+//   x.value = "" + position.coords.latitude + ", " + position.coords.longitude;
+// }
 
-$(document).ready(function(){
-    getLocation();
-});
+// function showError(error) {
+//   switch(error.code) {
+//     case error.PERMISSION_DENIED:
+//       x.innerHTML = "User denied the request for Geolocation."
+//       break;
+//     case error.POSITION_UNAVAILABLE:
+//       x.innerHTML = "Location information is unavailable."
+//       break;
+//     case error.TIMEOUT:
+//       x.innerHTML = "The request to get user location timed out."
+//       break;
+//     case error.UNKNOWN_ERROR:
+//       x.innerHTML = "An unknown error occurred."
+//       break;
+//   }
+// }
 
 function initMap() {
 // Create a new StyledMapType object, passing it an array of styles,
@@ -229,11 +229,11 @@ function initMap() {
     geocodeLatLng(geocoder, map, infowindow);
   });
   
-  $("document").ready(function() {
-    setTimeout(function() {
-        $("#getLocation").trigger('click');
-    },10);
-  });  
+//   $("document").ready(function() {
+//     setTimeout(function() {
+//         $("#getLocation").trigger('click');
+//     },10);
+//   });  
   
 }
 
@@ -328,6 +328,98 @@ AutocompleteDirectionsHandler.prototype.route = function() {
   
       document.getElementById("origin-output").value = document.getElementById("origin-input").value;
       document.getElementById("destination-output").value = document.getElementById("destination-input").value;
-      $('#origin, #controls, #output, .card').addClass('animate');
+      
+      var str1 = document.getElementById("origin-output").value;
   
+      var str2 = document.getElementById("destination-input").value;
+  
+      var pick = str1.split(' ').slice(0,3).join(' ');
+  
+      var drop = str2.split(' ').slice(0,3).join(' ');
+  
+      document.getElementById("pick-up").innerHTML = pick;
+   
+      document.getElementById("drop-off").innerHTML = drop;
+
+      $('#origin, #controls').addClass('none');
+  
+      $('#output, #vehicles').addClass('flex');
+  
+    var bounds = new google.maps.LatLngBounds;
+
+    var markersArray = [];
+
+    var geocoder = new google.maps.Geocoder;
+
+    var originInput = document.getElementById('origin-input').value;
+
+    var destinationInput = document.getElementById('destination-input').value;
+
+    var destinationIcon = 'https://chart.googleapis.com/chart?' +
+        'chst=d_map_pin_letter&chld=D|FF0000|000000';
+    var originIcon = 'https://chart.googleapis.com/chart?' +
+        'chst=d_map_pin_letter&chld=O|FFFF00|000000';
+
+    var service = new google.maps.DistanceMatrixService;
+    service.getDistanceMatrix({
+      origins: [originInput],
+      destinations: [destinationInput],
+      travelMode: 'DRIVING',
+      unitSystem: google.maps.UnitSystem.METRIC,
+      avoidHighways: false,
+      avoidTolls: false
+    }, function(response, status) {
+      if (status !== 'OK') {
+        alert('Error was: ' + status);
+      } else {
+        var originList = response.originAddresses;
+        var destinationList = response.destinationAddresses;
+        var outputTime = document.getElementById('time');
+        var outputDistance = document.getElementById('distance');
+        outputTime.innerHTML = '';
+        outputDistance.innerHTML = '';
+
+
+        for (var i = 0; i < originList.length; i++) {
+          var results = response.rows[i].elements;
+          geocoder.geocode({'address': originList[i]});
+          for (var j = 0; j < results.length; j++) {
+            geocoder.geocode({'address': destinationList[j]});
+            outputTime.innerHTML +=  results[j].duration.text + '<br>';
+            outputDistance.innerHTML +=  results[j].distance.text;          }
+        }
+     
+          var requestTime = document.getElementById('time').textContent;
+          var Time = requestTime.replace('mins', '');
+          Time = parseInt(Time);
+          document.getElementById('time').value = Time;
+          document.getElementById('requestTime').value = Time;
+
+          var requestDistance = document.getElementById('distance').textContent;
+          var Distance = requestDistance.replace('km', '');
+          Distance = parseInt(Distance);
+          document.getElementById('distance').value = Distance;
+          document.getElementById('requestDistance').value = Distance;
+        
+          function AddMinutesToDate(date, minutes) {
+               return new Date(date.getTime() + minutes*60000);
+          }
+          function DateFormat(date){
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+          }
+        
+          var now = new Date();
+          var at = Time + 2;
+          var next = AddMinutesToDate(now,at);
+          document.getElementById("arrival-time").innerHTML = DateFormat(next);
+
+        }
+    });
 };

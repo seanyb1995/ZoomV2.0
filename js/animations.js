@@ -26,11 +26,6 @@ jQuery(window).on('load', function() {
 
       });
     
-      jQuery(".card").click(function() {
-
-        jQuery('.card-selected').addClass('animate');
-
-      });
     
   }
   

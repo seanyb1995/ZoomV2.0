@@ -30,6 +30,7 @@ Index Styling
       justify-content: space-around;
       align-items: center;
       opacity: 1;
+      position: relative;
       
       .logo {
         display: flex;
@@ -86,7 +87,7 @@ Index Styling
       }
       
       form {
-        height: auto;
+        height: 100%;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -98,6 +99,8 @@ Index Styling
         transition: all 700ms ease-out;
         opacity: 0;
         margin-top: 250px;
+        overflow: hidden;
+        position: absolute;
         
         .input {
           display: flex;
@@ -171,6 +174,10 @@ Index Styling
 
           }
 
+        }
+        
+        #origin.none {
+          display: none !important;
         }
         
         .input:focus-within {
@@ -451,6 +458,7 @@ Index Styling
           bottom: 40px;
           flex-direction: column;
           height: auto;
+          z-index: 1;
           
           .destination-input {
             display: flex;
@@ -522,13 +530,16 @@ Index Styling
           
         }
         
+        #controls.none {
+          display: none !important;
+        }
+        
         #output {
           position: absolute;
           top: 50px;
           flex-direction: column;
           height: auto;
-          opacity: 0;
-          z-index: 0;
+          display: none !important;
           
           .destination-input {
             display: flex;
@@ -602,25 +613,86 @@ Index Styling
             width: 90%;
             border: none;
             height: 1px;
-            background: grey;
+            background: $l-grey;
           }
           
         }
         
-        #output.animate {
-          -webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-          z-index: 1 !important;
+        #output.flex {
+          display: flex !important;
         }
         
-        #origin.animate {
-         	-webkit-animation: slide-out-bck-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-	        animation: slide-out-bck-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; 
-        }
+        .trip-info {
+          position: absolute;
+          top: 50px;
+          width: 80%;
+          height: 100px;
+          background: white;
+          border-radius: 25px;
+          box-shadow: 0 3px 10px -5px;
+          margin-bottom: 1rem;
+          transform-origin: center;
+          transition: all 0.3s ease;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          display: none !important;
+
+          .icon {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            p {
+              text-align: center;
+              color: grey;
+              font-size: 12px;
+            }
+
+          }
+
+          .progress {
+            width: 100%;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            h3, p {
+              margin: 0;
+              padding: 0.25rem;
+            }
+
+            .bar {
+              width: 100%;
+              height: 4px;
+              border-radius: 2px;
+              background: grey;
+              overflow: hidden;
+              position: relative;
+
+              .progress {
+                height: 100%;
+                width: 0%;
+                background: black;
+              }
+
+            }
+
+            p {
+              color: grey;
+            }
+
+          }
+
+        }   
         
-        #controls.animate {
-          -webkit-animation: slide-out-bck-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-	        animation: slide-out-bck-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        .trip-info.flex  {
+          display: flex !important;
         }
         
       }

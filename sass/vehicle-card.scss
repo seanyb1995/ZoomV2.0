@@ -6,6 +6,7 @@ Selection
 --------------------------------------------------------------*/
 .owl-carousel {
   margin-top: 400px;
+  display: none !important;
   
   .owl-stage-outer {
   
@@ -17,86 +18,83 @@ Selection
       }
 
     }
+    .car {
+      text-decoration: none;
 
-    .card {
-      height: 200px;
-      width: 200px;
-      background: #333333;
-      display: flex;
-      flex-direction: column;
-      border-radius: 25px;
-      box-shadow: 0 3px 10px -5px;
-      position: relative;
-      opacity: 0;
-
-      .image {
-        width: 100%;
-        height: 60%;
-        background: white;
+      .card {
+        height: 200px;
+        width: 200px;
+        background: #333333;
+        display: flex;
+        flex-direction: column;
         border-radius: 25px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
+        box-shadow: 0 3px 10px -5px;
+        position: relative;
 
-        img {
+        .image {
           width: 100%;
-          height: 100%;
-        }
-
-      }
-
-      .text {
-        padding: 1rem;
-        display: flex;
-        flex-direction: row;
-
-        .car-info {
-          width: 50%;
-          h3 {
-            color: white;
-            margin: 0;
-            padding: 0;
-          }
-
-          p {
-            font-size: 0.75rem;
-            color: grey;
-            margin: 0;
-            padding: 0;
-            padding-top: 0.25rem;
-          }
-        }
-
-        .price {
-          width: 50%;
+          height: 60%;
+          background: white;
+          border-radius: 25px;
+          overflow: hidden;
           display: flex;
           justify-content: center;
-          align-items: center;
-          h3 {
-            color: white;
-            margin: 0;
-            padding: 0;
-            font-size: 2rem;
+
+          img {
+            width: 100%;
+            height: 100%;
           }
 
         }
 
-      }
+        .text {
+          padding: 1rem;
+          display: flex;
+          flex-direction: row;
 
-    }
+          .car-info {
+            width: 50%;
+            h3 {
+              color: white;
+              margin: 0;
+              padding: 0;
+            }
+
+            p {
+              font-size: 0.75rem;
+              color: grey;
+              margin: 0;
+              padding: 0;
+              padding-top: 0.25rem;
+            }
+          }
+
+          .price {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h3 {
+              color: white;
+              margin: 0;
+              padding: 0;
+              font-size: 2rem;
+            }
+
+          }
+
+        }
+
+      } 
+
+    }  
     
-    .card.animate {
-      -webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	    animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    }
-    
-    .card.select {
-      -webkit-animation: bounce-top 0.9s both;
-      animation: bounce-top 0.9s both;
-    }
-    
-  }  
+  }
   
+}
+
+#vehicles.flex {
+  display: flex !important;
 }
 /*-------------------------------------------------------------
 Selected
@@ -106,13 +104,24 @@ Selected
   bottom: 0;
   width: 100%;
   height: 70%;
-  background: white;
-  border-radius: 25px 25px 0 0;
+  background: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  opacity: 0;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px -5px;
+  display: none !important;
+  
+  #close-indicator {
+    border: none;
+    height: 2px;
+    width: 30%;
+    background: $l-grey;
+    position: absolute;
+    top: 0;
+  }
 
   .car-details {
     height: 60%;
@@ -122,6 +131,8 @@ Selected
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    padding-top: 25px;
+    border-radius: 35px;
 
     .text {
       height: 100%;
@@ -160,7 +171,7 @@ Selected
       overflow: hidden;
 
       img {
-        width: 325px;
+        width: 250px;
         height: auto;
         transform: rotate(-90deg);
       }
@@ -169,126 +180,362 @@ Selected
 
   }
 
-  .trip-details {
-    height: 40%;
+    .trip-details {
+      height: 40%;
+      width: 100%;
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding-bottom: 75px;
+
+      .location {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 2rem;
+
+        p {
+          color: white;
+        }
+
+        p:first-child {
+          color: grey;
+        }
+
+        i {
+          color: white;
+        }
+
+        .pick {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+
+          .icon {
+            width: 50px;
+          }
+
+          .text {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+
+            .origin,
+            .arrival {
+              width: 50%;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              
+              h1 {
+                color: white;
+                font-size: 1.625rem;
+                text-align: right;
+                font-weight: 400;
+              }
+              
+              p {
+                margin: 0;
+              }
+              
+              p:nth-child(2) {
+                margin-top: 0.5rem;
+              }
+              
+            }
+
+          }
+
+        }
+
+        .break {
+          position: relative;
+
+          i {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(50%,-50%);
+          }
+
+        }
+
+        .drop {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+
+          .icon {
+            width: 50px;
+          }
+
+          .text {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+
+            .origin,
+            .arrival {
+              width: 50%;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              
+              h1 {
+                color: white;
+                font-size: 1.625rem;
+                text-align: right;
+                font-weight: 400;
+              }
+              
+              p {
+                margin: 0;
+              }
+              
+              p:nth-child(2) {
+                margin-top: 0.5rem;
+              }
+              
+            }
+
+          }
+
+        }
+
+      }
+      
+      #request {
+        position: absolute;
+        width: 90%;
+        height: 50px;
+        background: white;
+        border-radius: 25px;
+        box-shadow: 0 3px 10px -5px;
+        margin-bottom: 1rem;
+        transform-origin: center;
+        transition: all 0.3s ease;
+        border: none;
+        bottom: 0;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+   }
+
+}
+
+.card-selected.flex {
+  display: flex !important;
+}
+
+/*-------------------------------------------------------------
+Trip Summary
+--------------------------------------------------------------*/
+.trip-summary {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60%;
+  background: #333;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 40px;
+
+  .car {
+    height: 30%;
     width: 100%;
-    background: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 
-    .location {
+    .company {
       width: 50%;
       display: flex;
       justify-content: center;
       flex-direction: column;
       padding: 2rem;
 
-      p {
+      h1 {
+        text-align: left;
         color: white;
-      }
-
-      p:first-child {
-        color: grey;
-      }
-
-      i {
-        color: white;
-      }
-
-      .pick {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-
-        .icon {
-          width: 50%;
-        }
-
-        .text {
-          width: 50%;
-        }
-
-      }
-
-      .break {
-        position: relative;
-
-        i {
-          position: absolute;
-          top: 0;
-          left: 0;
-          transform: translate(50%,-50%);
-        }
-
-      }
-
-      .drop {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-
-        .icon {
-          width: 50%;
-        }
-
-        .text {
-          width: 50%;
-        }
-
+        font-weight: 400;
+        font-size: 2rem;
       }
 
     }
 
-    .time {
+    .model {
       width: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem 2rem 2rem 0rem;
+
+      h3,p {
+        text-align: right;
+        margin: 0;
+        padding: 0;
+      }
+
+      h3 {
+        color: white;
+        font-weight: 400;
+      }
+
+      p {
+        color: grey;
+        font-weight: 300;
+      }
+
+    }
+
+  }
+
+  .placeholder {
+    position: relative;
+
+    img {
+      width: 200px;
+      height: auto;
+      position: absolute;
+      transform: translate(-35%,-50%);
+    }
+
+  }
+
+  .trip {
+    height: 70%;
+    width: 100%;
+    background: white;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .summary {
+      height: 50%;
+      padding: 2rem 2rem 0rem 2rem;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      
+      .cost {
+        width: 50%;
+      }
+      
+      .location {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+        .origin,
+        .destination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          
+          .text {
+            
+            p {
+              color: grey;
+              font-size: 12px;
+            }
+            
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    hr {
+      height: 1px;
+      width: 80%;
+      border: none;
+      background: $l-grey;
+    }
+
+    .rate {
+      height: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 2rem;
+      
+      .input {
+        width: 80%;
+        height: 50px;
+        background: white;
+        border-radius: 25px;
+        box-shadow: 0 3px 10px -5px;
+        margin-bottom: 1rem;
+        transform-origin: center;
+        transition: all 0.3s ease;
+        border: none;
+        
+        .comment-input {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          width: 80%;
 
-      .pick {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-
-        .text {
-          width: 100%;
-          text-align: right;
-
-          h1 {
-            color: white;
-            font-weight: 400;
+          input[type="text"] {
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            background: transparent;
+            box-shadow: none;
+            font-size: 14px;
+            width: 90%;
+            font-weight: bold;
           }
 
-        }
+          label {
+            position: absolute;
+            pointer-events: none;
+            display: block;
+            transition: 0.5s;
+            font-size: 12px;
+            color: #ccc;
+          }
 
+          input[type="text"]:focus + label,
+          input[type="text"]:valid + label,
+          input[type="password"]:focus + label,
+          input[type="password"]:valid + label {
+            transform: translateY(-9px);
+          }
+
+          input[type="text"]:focus,
+          input[type="text"]:valid,
+          input[type="password"]:focus,
+          input[type="password"]:valid {
+            transform: translateY(9px);
+          }
+        
+        }
+        
       }
-
-      .drop {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-
-        .text {
-          width: 100%;
-          text-align: right;
-
-          h1 {
-            color: white;
-            font-weight: 400;
-          }
-
-        }
-
+      
+      #done {
+        margin-top: 0 !important;
       }
 
     }
@@ -297,6 +544,6 @@ Selected
 
 }
 
-.card-selected.animate {
-  opacity: 1;
+.trip-summary.flex {
+  display: flex !important;
 }

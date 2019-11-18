@@ -11,5 +11,8 @@ $('.owl-carousel').owlCarousel({
     }
 });
 
-
-
+$('.car').on('click', function(event){
+  $('.card-selected').addClass('flex');
+  $('#output').removeClass('flex');
+  $('#vehicles').removeClass('flex');
+});
