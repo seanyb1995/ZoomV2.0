@@ -15,7 +15,7 @@
     <div class="summary">
       <div class="cost">
         <h3>Thank you!</h3>
-        <h1>$6.00</h1>
+        <h1>$<?php if(isset($_SESSION["cost"])) { echo $_SESSION["cost"]; } ?></h1>
       </div>
       <div class="locations">
         <div class="origin">

@@ -23,7 +23,6 @@
         $time = $_POST['time'];
         $distance = $_POST['distance'];
         $cost = $_POST['cost'];
-        $comment = $_POST['comment'];
     
         $origin = mysqli_real_escape_string($connection,$origin);
         $destination = mysqli_real_escape_string($connection,$destination);
@@ -31,7 +30,6 @@
         $time = mysqli_real_escape_string($connection,$time);
         $distance = mysqli_real_escape_string($connection,$distance);
         $cost = mysqli_real_escape_string($connection,$cost);
-        $comment = mysqli_real_escape_string($connection,$comment);
         
         // Checking form fields are filled properly
         if(empty($origin)) {
@@ -52,13 +50,10 @@
         if(empty($cost)) {
             array_push($errors, "Could not calculate ride cost");
         }
-        if(empty($comment)) {
-            array_push($errors, "Comment is required");
-        }
         
         if (count($errors) == 0) {
-            $sql = "INSERT INTO request (username, origin, destination, time, distance, cost, comment)
-            VALUES ('$username', '$origin', '$destination', '$time', '$distance', '$cost', '$comment')";
+            $sql = "INSERT INTO request (username, origin, destination, time, distance, cost)
+            VALUES ('$username', '$origin', '$destination', '$time', '$distance', '$cost')";
             mysqli_query($connection, $sql);
             $_SESSION['origin'] = $origin;
             $_SESSION['destination'] = $destination;
@@ -77,11 +72,32 @@
     // unset current ride
     
     if (isset($_POST['done'])) {
-        unset($_SESSION['origin']);
-        unset($_SESSION['destination']);
-        unset($_SESSION['time']);
-        unset($_SESSION['distance']);
-        unset($_SESSION['cost']);
+      
+        $comment = $_POST['comment'];
+      
+        $comment = mysqli_real_escape_string($connection,$comment);
+      
+        if ($comment != "") {
+            $sql = "INSERT INTO request (comment)
+            VALUES ('$comment')";
+            mysqli_query($connection, $sql);
+            $msg = urlencode('Comment submitted');
+            header("Location: dashboard.php?msg=$msg");
+            unset($_SESSION['origin']);
+            unset($_SESSION['destination']);
+            unset($_SESSION['time']);
+            unset($_SESSION['distance']);
+            unset($_SESSION['cost']);
+        }else {
+            $msg = urlencode('Comment no submitted.');
+            unset($_SESSION['origin']);
+            unset($_SESSION['destination']);
+            unset($_SESSION['time']);
+            unset($_SESSION['distance']);
+            unset($_SESSION['cost']);
+            header("Location: dashboard.php?msg=$msg");
+        }
+      
     }
     
 ?>

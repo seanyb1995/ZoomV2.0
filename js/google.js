@@ -377,9 +377,11 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         var outputTime = document.getElementById('time');
         var outputDistance = document.getElementById('distance');
         var outputPrice = document.getElementById('price');
+        var outputCost = document.getElementById('cost');
         outputTime.innerHTML = '';
         outputDistance.innerHTML = '';
         outputPrice.innerHTML = '';
+        outputCost.value = '';
 
 
         for (var i = 0; i < originList.length; i++) {
@@ -390,6 +392,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
             outputTime.innerHTML +=  results[j].duration.text + '<br>';
             outputDistance.innerHTML +=  results[j].distance.text;
             outputPrice.innerHTML +=  '$' + Math.round((((results[j].distance.value) / 1000) * 1.5));
+            outputCost.value +=  Math.round((((results[j].distance.value) / 1000) * 1.5));
           }
         }
      
@@ -403,7 +406,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           var Distance = requestDistance.replace('km', '');
           Distance = parseInt(Distance);
           document.getElementById('distance').value = Distance;
-          document.getElementById('requestDistance').value = Distance;
+          document.getElementById('requestDistance').value = Distance; 
         
           function AddMinutesToDate(date, minutes) {
                return new Date(date.getTime() + minutes*60000);
