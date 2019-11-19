@@ -435,19 +435,43 @@ Trip Summary
         width: 50%;
       }
       
-      .location {
+      .locations {
         width: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         
-        .origin,
-        .destination {
+        .origin {
           display: flex;
-          justify-content: center;
           align-items: center;
           flex-direction: row;
+          width: 100%;
+          
+          .icon {
+            width: 25px;
+          }
+          
+          .text {
+            
+            p {
+              color: grey;
+              font-size: 12px;
+            }
+            
+          }
+          
+        }
+        
+        .destination {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          width: 100%;
+          
+          .icon {
+            width: 25px;
+          }
           
           .text {
             

@@ -1,4 +1,4 @@
-<div class="trip-summary flex">
+<div class="trip-summary">
   <div class="car">
     <div class="company">
       <h1>Zoom</h1>
@@ -23,7 +23,7 @@
             <i class="fas fa-location-arrow"></i>
           </div>   
           <div class="text">
-            <p><?php if(isset($_SESSION["origin"])) { echo $_SESSION["origin"]; } ?></p>
+            <p id="origin-summary"><?php if(isset($_SESSION["origin"])) { echo $_SESSION["origin"]; } ?></p>
           </div>
         </div>
         <div class="destination">
@@ -31,7 +31,7 @@
             <i class="fas fa-map-marker-alt"></i>
           </div>   
           <div class="text">
-            <p><?php if(isset($_SESSION["destination"])) { echo $_SESSION["destination"]; } ?></p>
+            <p id="destination-summary"><?php if(isset($_SESSION["destination"])) { echo $_SESSION["destination"]; } ?></p>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
           <i class="fas fa-comment"></i>
         </div>
         <div class="comment-input">
-          <input type="text" id="comment" name="comment" required/>
+          <input type="text" id="comment" name="comment"/>
           <label>Comment</label>
         </div>
       </div>

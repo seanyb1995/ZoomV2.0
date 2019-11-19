@@ -15,7 +15,7 @@
         </div>
         <!--trip cost-->
         <div class="price">
-          <h3>$6</h3>
+          <h3 id="price"></h3>
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="price">
           <!--trip cost-->
-          <h3>$6</h3>
+          <h3 id="price"></h3>
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="price">
           <!--trip cost-->
-          <h3>$6</h3>
+          <h3 id="price"></h3>
         </div>
       </div>
     </div>

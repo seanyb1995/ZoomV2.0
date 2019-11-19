@@ -59,6 +59,7 @@
          </div>
       </div>
     </div>
+    <input id="cost" type="text" name="cost" value="<?php if(isset($_SESSION["cost"])) { echo $_SESSION["cost"]; } ?>" hidden/>
     <input id="username" type="text" name="username" value="<?php if(isset($_SESSION["username"])) { echo $_SESSION["username"]; } ?>" hidden/>
     <input id="request" type="submit" name="request" value="Request driver"/>
   </div>

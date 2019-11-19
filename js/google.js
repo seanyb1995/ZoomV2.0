@@ -331,7 +331,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       
       var str1 = document.getElementById("origin-output").value;
   
-      var str2 = document.getElementById("destination-input").value;
+      var str2 = document.getElementById("destination-output").value;
   
       var pick = str1.split(' ').slice(0,3).join(' ');
   
@@ -376,8 +376,10 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         var destinationList = response.destinationAddresses;
         var outputTime = document.getElementById('time');
         var outputDistance = document.getElementById('distance');
+        var outputPrice = document.getElementById('price');
         outputTime.innerHTML = '';
         outputDistance.innerHTML = '';
+        outputPrice.innerHTML = '';
 
 
         for (var i = 0; i < originList.length; i++) {
@@ -386,7 +388,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           for (var j = 0; j < results.length; j++) {
             geocoder.geocode({'address': destinationList[j]});
             outputTime.innerHTML +=  results[j].duration.text + '<br>';
-            outputDistance.innerHTML +=  results[j].distance.text;          }
+            outputDistance.innerHTML +=  results[j].distance.text;
+            outputPrice.innerHTML +=  '$' + Math.round((((results[j].distance.value) / 1000) * 1.5));
+          }
         }
      
           var requestTime = document.getElementById('time').textContent;

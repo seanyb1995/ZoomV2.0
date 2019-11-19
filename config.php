@@ -64,6 +64,8 @@ $sql = "CREATE TABLE IF NOT EXISTS request (
         destination VARCHAR(320) NOT NULL,
         time VARCHAR(320) NOT NULL,
         distance VARCHAR(320) NOT NULL,
+        cost VARCHAR(320) NOT NULL,
+        comment VARCHAR(320) NOT NULL,
         PRIMARY KEY (id)
         );";
         

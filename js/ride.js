@@ -43,7 +43,6 @@ if (i == 0) {
   var elem = document.getElementById("progress");
   var width = 1;
   var time = $('#requestTime').val();
-  console.log(time);
   var time = (time * 10) + 10;
   var id = setInterval(frame, time);
   function frame() {
@@ -56,3 +55,28 @@ if (i == 0) {
     }
   }
 }
+
+//------------------------------------------------------home page animations--//
+jQuery(document).ready(function($) {
+
+var os = document.getElementById("origin-summary").innerHTML;
+  console.log(os);
+
+if(os != ""){
+  
+  var originstr = os.split(' ').slice(0,3).join(' ');
+  document.getElementById("origin-summary").innerHTML = originstr;
+  
+}
+  
+ var ds = document.getElementById("destination-summary").innerHTML;
+  console.log(os);
+
+if(ds != ""){
+  
+  var destinationstr = ds.split(' ').slice(0,3).join(' ');
+  document.getElementById("destination-summary").innerHTML = destinationstr;
+  
+}
+
+});
