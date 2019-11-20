@@ -326,13 +326,15 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         if (status === 'OK') {
           me.directionsRenderer.setDirections(response);
           
-          // start
-//           var startlat = me.directionsRenderer.directions.routes[0].legs[0].start_location.lat(); 
-//           var startlng =  me.directionsRenderer.directions.routes[0].legs[0].start_location.lng
+          var startLatlng = google.maps.DirectionsLeg.start_location
           
-          // start
-          var start = me.directionsRenderer.directions.routes[0].legs[0].start_location; 
-          var end =  me.directionsRenderer.directions.routes[0].legs[0].end_location;
+          var endLatlng = google.maps.DirectionsLeg.end_location
+          
+          var inBetween = google.maps.geometry.spherical.interpolate(startLatlng, endLatlng, 0.5);  
+          
+          var infowindow = new google.maps.InfoWindow({content: "infowindow text content"});
+          infowindow.setPosition(inBetween);
+          infowindow.open(this.map);
           
         } else {
           window.alert('Directions request failed due to ' + status);
@@ -395,6 +397,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         outputDistance.innerHTML = '';
         outputPrice.innerHTML = '';
         outputCost.value = '';
+
 
         for (var i = 0; i < originList.length; i++) {
           var results = response.rows[i].elements;

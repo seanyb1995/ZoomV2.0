@@ -39,6 +39,7 @@ include('request.php');
         <!--welcome message-->
         <h1><?php // echo $_SESSION['success']; ?></h1>
         <form id="dashboard" action="dashboard.php" method="POST">
+          <p id="info"></p>
           <!--ride info-->
          <?php include('section-trip-info.php'); ?>
          <!--origin and destination output-->
@@ -103,7 +104,7 @@ include('request.php');
   <script src="js/carousel.js"></script>`
   <script src="js/ride.js" type="text/javascript"></script>
   <script src="https://kit.fontawesome.com/845c12c9ef.js" crossorigin="anonymous"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAywbPa8_RyuamLyD_kxoMxZnvhsw9JKY&libraries=places&callback=initMap"type="text/javascript"></script>  
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAywbPa8_RyuamLyD_kxoMxZnvhsw9JKY&libraries=places&callback=initMap"type="text/javascript"></script>
   <script src="js/google.js" type="text/javascript"></script>
   
 </body>

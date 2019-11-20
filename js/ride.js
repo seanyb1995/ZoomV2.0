@@ -60,7 +60,6 @@ if (i == 0) {
 jQuery(document).ready(function($) {
 
 var os = document.getElementById("origin-summary").innerHTML;
-  console.log(os);
 
 if(os != ""){
   
@@ -70,7 +69,6 @@ if(os != ""){
 }
   
  var ds = document.getElementById("destination-summary").innerHTML;
-  console.log(os);
 
 if(ds != ""){
   
