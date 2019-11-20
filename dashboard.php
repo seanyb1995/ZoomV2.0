@@ -60,7 +60,8 @@ include('request.php');
                        </script>'; 
                }
                ?>
-              <input type="text" id="getLocation" value="Reverse Geocode" hidden/>
+              <input type="text" id="latlng" value="" hidden/>
+              <input type="button" id="getLocation" value="Reverse Geocode" hidden/>
               <label>Origin</label>
             </div>
           </div>

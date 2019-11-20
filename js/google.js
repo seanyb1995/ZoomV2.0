@@ -1,38 +1,40 @@
-// // current geolocation
-// var x = document.getElementById("latlng");
+// current geolocation
+var x = document.getElementById("latlng");
 
-// function getLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition, showError);
-//   } else { 
-//     x.innerHTML = "Geolocation is not supported by this browser.";
-//   }
-// }
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
 
-// $(document).ready(function(){
-//     getLocation();
-// });
+$(document).ready(function(){
+    getLocation();
+});
 
-// function showPosition(position) {
-//   x.value = "" + position.coords.latitude + ", " + position.coords.longitude;
-// }
+function showPosition(position) {
+  x.value = "" + position.coords.latitude + ", " + position.coords.longitude;
+}
 
-// function showError(error) {
-//   switch(error.code) {
-//     case error.PERMISSION_DENIED:
-//       x.innerHTML = "User denied the request for Geolocation."
-//       break;
-//     case error.POSITION_UNAVAILABLE:
-//       x.innerHTML = "Location information is unavailable."
-//       break;
-//     case error.TIMEOUT:
-//       x.innerHTML = "The request to get user location timed out."
-//       break;
-//     case error.UNKNOWN_ERROR:
-//       x.innerHTML = "An unknown error occurred."
-//       break;
-//   }
-// }
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "An unknown error occurred."
+      break;
+  }
+}
+
+var map;
 
 function initMap() {
 // Create a new StyledMapType object, passing it an array of styles,
@@ -207,7 +209,8 @@ function initMap() {
         }
       ],
       {name: 'Styled Map'});
-  var map = new google.maps.Map(document.getElementById('map'), {
+  
+      map = new google.maps.Map(document.getElementById('map'), {
       mapTypeControl: false,
       center: {lat: -33.8688, lng: 151.2195},
       zoom: 13,
@@ -221,10 +224,10 @@ function initMap() {
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
   
-  var geocoder = new google.maps.Geocoder;
-  var infowindow = new google.maps.InfoWindow;
+  //   var geocoder = new google.maps.Geocoder;
+  var geocoder = new google.maps.Geocoder();
+  var infowindow = new google.maps.InfoWindow();
   new AutocompleteDirectionsHandler(map);
-  
   var marker = new google.maps.Marker({
     map: map
   });
@@ -233,31 +236,29 @@ function initMap() {
     geocodeLatLng(geocoder, map, infowindow);
   });
   
-//   $("document").ready(function() {
-//     setTimeout(function() {
-//         $("#getLocation").trigger('click');
-//     },10);
-//   });  
+  $("document").ready(function() {
+    setTimeout(function() {
+        $("#getLocation").trigger('click');
+    },10);
+  });  
   
 }
 
- function geocodeLatLng(geocoder, map, infowindow) {
-      var input = document.getElementById('latlng').value;
-      var latlngStr = input.split(',', 2);
-      var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-      geocoder.geocode({'location': latlng}, function(results, status) {
-        if (status === 'OK') {
-          if (results[0]) {
-            infowindow.setContent(results[0].formatted_address);
-            document.getElementById("origin-input").value = results[0].formatted_address;
-            infowindow.open(map);
-          } else {
-            window.alert('No results found');
-          }
-        } else {
-          window.alert('Geocoder failed due to: ' + status);
-        }
-      });
+function geocodeLatLng(geocoder, map, infowindow) {
+  var input = document.getElementById('latlng').value;
+  var latlngStr = input.split(',', 2);
+  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === 'OK') {
+      if (results[0]) {
+        document.getElementById("origin-input").value = results[0].formatted_address;
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
 }
     
   
@@ -269,8 +270,8 @@ function AutocompleteDirectionsHandler(map) {
   this.originPlaceId = null;
   this.destinationPlaceId = null;
   this.travelMode = 'DRIVING';
-  this.directionsService = new google.maps.DirectionsService;
-  this.directionsRenderer = new google.maps.DirectionsRenderer;
+  this.directionsService = new google.maps.DirectionsService();
+  this.directionsRenderer = new google.maps.DirectionsRenderer();
   this.directionsRenderer.setMap(map);
 
   var originInput = document.getElementById('origin-input');
@@ -325,15 +326,27 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       function(response, status) {
         if (status === 'OK') {
           me.directionsRenderer.setDirections(response);
+
+          var infowindow = new google.maps.InfoWindow();
           
-          // start
-//           var startlat = me.directionsRenderer.directions.routes[0].legs[0].start_location.lat(); 
-//           var startlng =  me.directionsRenderer.directions.routes[0].legs[0].start_location.lng
+          var test = response.routes[0].legs[0].distance.text + "<br>" + response.routes[0].legs[0].duration.text + " ";
+          console.log(test);
           
-          // start
-          var start = me.directionsRenderer.directions.routes[0].legs[0].start_location; 
-          var end =  me.directionsRenderer.directions.routes[0].legs[0].end_location;
+          var test2 = response.routes[0].legs[0].end_location;
           
+          console.log(test2);
+          
+            var marker = new google.maps.Marker({
+              position: response.routes[0].legs[0].end_location,
+              map: this.map,
+              title: 'Test'
+            });
+
+          infowindow.setContent(response.routes[0].legs[0].duration.text + " ");
+          infowindow.setPosition(response.routes[0].legs[0].end_location);
+          infowindow.open(this.map, marker);
+          
+   
         } else {
           window.alert('Directions request failed due to ' + status);
         }
@@ -358,11 +371,11 @@ AutocompleteDirectionsHandler.prototype.route = function() {
   
       $('#output, #vehicles').addClass('flex');
   
-    var bounds = new google.maps.LatLngBounds;
+    var bounds = new google.maps.LatLngBounds();
 
     var markersArray = [];
 
-    var geocoder = new google.maps.Geocoder;
+    var geocoder = new google.maps.Geocoder();
 
     var originInput = document.getElementById('origin-input').value;
 
@@ -373,7 +386,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
     var originIcon = 'https://chart.googleapis.com/chart?' +
         'chst=d_map_pin_letter&chld=O|FFFF00|000000';
 
-    var service = new google.maps.DistanceMatrixService;
+    var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix({
       origins: [originInput],
       destinations: [destinationInput],
@@ -398,9 +411,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 
         for (var i = 0; i < originList.length; i++) {
           var results = response.rows[i].elements;
-          geocoder.geocode({'address': originList[i]});
           for (var j = 0; j < results.length; j++) {
-            geocoder.geocode({'address': destinationList[j]});
             outputTime.innerHTML +=  results[j].duration.text + '<br>';
             outputDistance.innerHTML +=  results[j].distance.text;
             outputPrice.innerHTML +=  '$' + Math.round((((results[j].distance.value) / 1000) * 1.5));

@@ -326,15 +326,19 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         if (status === 'OK') {
           me.directionsRenderer.setDirections(response);
           
-          var startLatlng = google.maps.DirectionsLeg.start_location
+          // start
+//           var startlat = me.directionsRenderer.directions.routes[0].legs[0].start_location.lat(); 
+//           var startlng =  me.directionsRenderer.directions.routes[0].legs[0].start_location.lng
           
-          var endLatlng = google.maps.DirectionsLeg.end_location
+          // start
+//           var start = me.directionsRenderer.directions.routes[0].legs[0].start_location; 
+//           var end =  me.directionsRenderer.directions.routes[0].legs[0].end_location;
           
-          var inBetween = google.maps.geometry.spherical.interpolate(startLatlng, endLatlng, 0.5);  
-          
-          var infowindow = new google.maps.InfoWindow({content: "infowindow text content"});
-          infowindow.setPosition(inBetween);
-          infowindow.open(this.map);
+          var step = 1;
+          var infowindow2 = new google.maps.InfoWindow();
+          infowindow2.setContent(response.routes[0].legs[0].steps[step].distance.text + "<br>" + response.routes[0].legs[0].steps[step].duration.text + " ");
+          infowindow2.setPosition(response.routes[0].legs[0].steps[step].end_location);
+          infowindow2.open(map);
           
         } else {
           window.alert('Directions request failed due to ' + status);
@@ -375,7 +379,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
     var originIcon = 'https://chart.googleapis.com/chart?' +
         'chst=d_map_pin_letter&chld=O|FFFF00|000000';
 
-    var service = new google.maps.DistanceMatrixService;
+    var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix({
       origins: [originInput],
       destinations: [destinationInput],
@@ -397,7 +401,6 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         outputDistance.innerHTML = '';
         outputPrice.innerHTML = '';
         outputCost.value = '';
-
 
         for (var i = 0; i < originList.length; i++) {
           var results = response.rows[i].elements;
