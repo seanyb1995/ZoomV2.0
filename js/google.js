@@ -211,13 +211,15 @@ function initMap() {
       {name: 'Styled Map'});
   
       map = new google.maps.Map(document.getElementById('map'), {
-      mapTypeControl: false,
-      center: {lat: -33.8688, lng: 151.2195},
-      zoom: 13,
-      disableDefaultUI: true,
-      mapTypeControlOptions: {
-      mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain','styled_map']
+        mapTypeControl: false,
+        center: {lat: -33.8688, lng: 151.2195},
+        zoom: 13,
+        disableDefaultUI: true,
+        mapTypeControlOptions: {
+        mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain','styled_map']
     }
+        
+     
   });
  
   //Associate the styled map with the MapTypeId and set it to display.
@@ -328,14 +330,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           me.directionsRenderer.setDirections(response);
 
           var infowindow = new google.maps.InfoWindow();
-          
-          var test = response.routes[0].legs[0].distance.text + "<br>" + response.routes[0].legs[0].duration.text + " ";
-          console.log(test);
-          
-          var test2 = response.routes[0].legs[0].end_location;
-          
-          console.log(test2);
-          
+
             var marker = new google.maps.Marker({
               position: response.routes[0].legs[0].end_location,
               map: this.map,
@@ -402,11 +397,15 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         var destinationList = response.destinationAddresses;
         var outputTime = document.getElementById('time');
         var outputDistance = document.getElementById('distance');
-        var outputPrice = document.getElementById('price');
+        var outputPrice1 = document.getElementById('price1');
+        var outputPrice2 = document.getElementById('price2');
+        var outputPrice3 = document.getElementById('price3');
         var outputCost = document.getElementById('cost');
         outputTime.innerHTML = '';
         outputDistance.innerHTML = '';
-        outputPrice.innerHTML = '';
+        outputPrice1.innerHTML = '';
+        outputPrice2.innerHTML = '';
+        outputPrice3.innerHTML = '';
         outputCost.value = '';
 
         for (var i = 0; i < originList.length; i++) {
@@ -414,7 +413,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           for (var j = 0; j < results.length; j++) {
             outputTime.innerHTML +=  results[j].duration.text + '<br>';
             outputDistance.innerHTML +=  results[j].distance.text;
-            outputPrice.innerHTML +=  '$' + Math.round((((results[j].distance.value) / 1000) * 1.5));
+            outputPrice1.innerHTML +=  '$' + Math.round((((results[j].distance.value) / 1000) * 1.5));
+            outputPrice2.innerHTML +=  '$' + Math.round((((results[j].distance.value) / 1000) * 1.5));
+            outputPrice3.innerHTML +=  '$' + Math.round((((results[j].distance.value) / 1000) * 1.5));
             outputCost.value +=  Math.round((((results[j].distance.value) / 1000) * 1.5));
           }
         } 
@@ -450,6 +451,8 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           var next = AddMinutesToDate(now,at);
           document.getElementById("arrival-time").innerHTML = DateFormat(next);
 
+          document.getElementById("arrival").value = document.getElementById("arrival-time").innerHTML
+       
         }
     });
 };

@@ -16,7 +16,7 @@
     <div class="bar">
       <div id="progress" class="progress"></div>
     </div>
-    <p id="distance"></p>
+    <p id="distance"><?php if(isset($_SESSION["arrival"])) { echo $_SESSION["arrival"]; } ?></p>
     <input type="text" id="requestDistance" name="distance" value="<?php if(isset($_SESSION["distance"])) { echo $_SESSION["distance"]; } ?>" hidden/>
   </div>
   <div class="icon">

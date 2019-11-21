@@ -15,4 +15,5 @@ $('.car').on('click', function(event){
   $('.card-selected').addClass('flex');
   $('#output').removeClass('flex');
   $('#vehicles').removeClass('flex');
+  $('#overlay').css("display", "block");
 });

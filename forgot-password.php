@@ -59,8 +59,8 @@ include('config.php');
           <button type="submit" class="forgotpassword" name="forgotpassword">Find</button>
           <!--secondary navigation-->
           <div class="secondary-nav">
-          <p>Already a member? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/login.php">Sign in</a></p>                 
-            <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign up now</a></p>
+          <p>Already a member? <a id="login" href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/login.php">Sign in</a></p>                 
+            <p>Don't have an account? <a id="sign-up" href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign up now</a></p>
           </div>
         </form>
       </div>
@@ -69,7 +69,9 @@ include('config.php');
   
   <!--scripts-->
   <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/gsap-latest-beta.min.js" type="text/javascript"></script>
   <script src="js/reveal-password.js"></script>
+  <script src="js/animations.js"></script>
   
 </body>
 

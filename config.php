@@ -70,10 +70,10 @@ $sql = "CREATE TABLE IF NOT EXISTS request (
         );";
         
         
-if ($connection->query($sql) === TRUE) {
-    echo "Table account created successfully";
-} else {
-    echo "Error creating table: " . $connection->error;
-}
+// if ($connection->query($sql) === TRUE) {
+//     echo "Table account created successfully";
+// } else {
+//     echo "Error creating table: " . $connection->error;
+// }
 $connection->close();
 ?>

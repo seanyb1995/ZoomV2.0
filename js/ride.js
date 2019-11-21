@@ -19,24 +19,6 @@ if(timer !== ""){
     var time = today.getHours() + ":" + (today.getMinutes() + endTime) + ":" + today.getSeconds();
 }
 
-var distance = $('#requestDistance').val();
-
-if(distance !== ""){
-    var counterDistance = $('#requestDistance').val();
-    function updateCounter(){
-        if(counterDistance == 0){
-            $('#distance').html("0km");
-        }else{
-            $('#distance').html(counterDistance + "  km");
-            counterDistance--;
-        }
-    }
-    
-    var interval = ((counterTime / counterDistance) * 1000);
-    
-    var distance = setInterval(updateCounter, interval);
-}
-
 var i = 0;
 if (i == 0) {
   i = 1;
@@ -78,3 +60,21 @@ if(ds != ""){
 }
 
 });
+
+//------------------------------------------------------home page animations--//
+jQuery(document).ready(function($) {
+
+  $('#destination-output, #origin-output').click(function(){
+    $('#output, #vehicles').removeClass('flex');
+    $('#origin, #controls').removeClass('none');
+    $('#origin, #controls').addClass('flex');
+  });
+  
+  $('#overlay').click(function(){
+    $(this).css("display","none"); 
+    $('.card-selected.flex').removeClass('flex');
+    $('#output, #vehicles').addClass('flex');
+  });
+
+});
+

@@ -23,6 +23,7 @@
         $time = $_POST['time'];
         $distance = $_POST['distance'];
         $cost = $_POST['cost'];
+        $arrival = $_POST['arrival'];
     
         $origin = mysqli_real_escape_string($connection,$origin);
         $destination = mysqli_real_escape_string($connection,$destination);
@@ -30,6 +31,7 @@
         $time = mysqli_real_escape_string($connection,$time);
         $distance = mysqli_real_escape_string($connection,$distance);
         $cost = mysqli_real_escape_string($connection,$cost);
+        $arrival = mysqli_real_escape_string($connection,$arrival);
         
         // Checking form fields are filled properly
         if(empty($origin)) {
@@ -50,6 +52,9 @@
         if(empty($cost)) {
             array_push($errors, "Could not calculate ride cost");
         }
+        if(empty($arrival)) {
+            array_push($errors, "No arrival time");
+        }
         
         if (count($errors) == 0) {
             $sql = "INSERT INTO request (username, origin, destination, time, distance, cost)
@@ -60,6 +65,7 @@
             $_SESSION['time'] = $time;
             $_SESSION['distance'] = $distance;
             $_SESSION['cost'] = $cost;
+            $_SESSION['arrival'] = $arrival;
             $msg = urlencode('Vehicle request successful.');
             header("Location: dashboard.php?msg=$msg");
         }else {

@@ -114,7 +114,7 @@ include('authentication.php');
           <button type="submit" class="register" name="register">Register</button>
           <!--secondary navigation-->
           <div class="secondary-nav">
-            <p>Already a member? <a href="login.php">Sign in</a></p>       
+            <p>Already a member? <a id="login" href="login.php">Sign in</a></p>       
           </div>
         </form>
       </div>
@@ -123,7 +123,9 @@ include('authentication.php');
 
   <!--scripts-->
   <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/gsap-latest-beta.min.js" type="text/javascript"></script>
   <script src="js/reveal-password.js"></script>
+  <script src="js/animations.js"></script>
   
 </body>
 

@@ -39,8 +39,8 @@ include('request.php');
         <!--welcome message-->
         <h1><?php // echo $_SESSION['success']; ?></h1>
         <form id="dashboard" action="dashboard.php" method="POST">
-          <p id="info"></p>
-          <!--ride info-->
+          <div id="overlay"></div>
+         <!--ride info-->
          <?php include('section-trip-info.php'); ?>
          <!--origin and destination output-->
          <?php include ('section-origin-destination-output.php'); ?>
@@ -101,12 +101,14 @@ include('request.php');
   </section>
 
   <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
-  <script src="owlcarousel/owl.carousel.min.js"></script>`
-  <script src="js/carousel.js"></script>`
+  <script src="js/gsap-latest-beta.min.js" type="text/javascript"></script>
+  <script src="owlcarousel/owl.carousel.min.js" type="text/javascript"></script>`
+  <script src="js/carousel.js" type="text/javascript"></script>`
   <script src="js/ride.js" type="text/javascript"></script>
-  <script src="https://kit.fontawesome.com/845c12c9ef.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/845c12c9ef.js" crossorigin="anonymous" type="text/javascript"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAywbPa8_RyuamLyD_kxoMxZnvhsw9JKY&libraries=places&callback=initMap"type="text/javascript"></script>
   <script src="js/google.js" type="text/javascript"></script>
+  <script src="js/animations.js"></script>
   
 </body>
 

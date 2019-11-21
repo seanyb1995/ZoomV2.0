@@ -53,7 +53,7 @@ include('config.php');
           </svg>
         </div>
         <!--login form-->
-        <form action="login.php" method="POST">
+        <form id="login"action="login.php" method="POST">
          <!--errors-->
          <?php include('errors.php'); ?>
           <!--username input-->
@@ -107,7 +107,7 @@ include('config.php');
           <button type="submit" class="login" name="login">Login</button>
           <!--secondary navigation-->
           <div class="secondary-nav">
-            <p>Don't have an account? <a href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign up now</a></p>
+            <p>Don't have an account? <a id="sign-up" href="http://zoomv2-0-seanbuchanan1995351517.codeanyapp.com/register.php">Sign up now</a></p>
           </div>
           </form>
       </div>
@@ -116,6 +116,7 @@ include('config.php');
   
   <!--scripts-->
   <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/gsap-latest-beta.min.js" type="text/javascript"></script>
   <script src="js/reveal-password.js"></script>
   <script src="js/animations.js"></script>
   
