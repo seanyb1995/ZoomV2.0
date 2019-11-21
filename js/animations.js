@@ -82,11 +82,17 @@ jQuery(document).ready(function($) {
     
     if (top.location.pathname === '/dashboard.php'){
 
-      var t5 = gsap.timeline({defaults:{duration: 0.5, ease: Power1.easeInOut}})
+      var t5 = gsap.timeline({defaults:{duration: 0.5, ease: Power1.easeIn}})
 
-      t5.from(".input", {opacity: 0, scaleX:0.8, scaleY:0.8, stagger: 0.5})
+      t5.from(".input", {opacity: 0, scaleX:0.8, scaleY:0.8, stagger: 0.2})
       
     }
+    
+
+      var t11 = gsap.timeline({defaults:{duration: 0.5, ease: Power1.easeInOut}})
+
+      t11.from(".trip-info.flex", {opacity: 0, scaleX:0.8, scaleY:0.8})
+      
     
 
   });
@@ -136,6 +142,22 @@ jQuery(document).ready(function($) {
   });
   
   $("#password_2").focusout(function() {
+    $(this).closest(".input").css("transform", "scale(1)"); 
+  });
+  
+  $("#origin-input").focus(function() {
+    $(this).closest(".input").css("transform", "scale(1.1)"); 
+  });
+  
+  $("#origin-input").focusout(function() {
+    $(this).closest(".input").css("transform", "scale(1)"); 
+  });
+  
+  $("#destination-input").focus(function() {
+    $(this).closest(".input").css("transform", "scale(1.1)"); 
+  });
+  
+  $("#destination-input").focusout(function() {
     $(this).closest(".input").css("transform", "scale(1)"); 
   });
   

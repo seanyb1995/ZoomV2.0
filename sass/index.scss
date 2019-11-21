@@ -156,10 +156,6 @@ Index Styling
 
         }
         
-        #origin.none {
-          display: none !important;
-        }
-        
         .input:focus-within {
           transform: scale(1.1);
         } 
@@ -525,7 +521,7 @@ Index Styling
           top: 50px;
           flex-direction: column;
           height: auto;
-          display: none !important;
+          display: none;
           
           .destination-input {
             display: flex;
@@ -605,7 +601,7 @@ Index Styling
         }
         
         #output.flex {
-          display: flex !important;
+          display: flex;
         }
         
         .trip-info {

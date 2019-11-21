@@ -7,7 +7,6 @@ if(timer !== ""){
     function updateCounter(){
         if(counterTime == 0){
             $('#time').html("0min");
-            $('.trip-info').removeClass('flex');
             $('.trip-summary').addClass('flex');
         }else{
             $('#time').html(counterTime + " min");
@@ -31,6 +30,9 @@ if (i == 0) {
     if (width >= 100) {
       clearInterval(id);
       i = 0;
+      var t12 = gsap.timeline({defaults:{duration: 0.5, ease: Power1.easeInOut}})
+      t12.to(".trip-info.flex", {opacity: 0, scaleX:0.8, scaleY:0.8})
+         .from(".trip-summary.flex", {opacity: 0, y: 600}) 
     } else {
       width++;
       elem.style.width = width + "%";
@@ -65,15 +67,14 @@ if(ds != ""){
 jQuery(document).ready(function($) {
 
   $('#destination-output, #origin-output').click(function(){
-    $('#output, #vehicles').removeClass('flex');
-    $('#origin, #controls').removeClass('none');
-    $('#origin, #controls').addClass('flex');
-  });
-  
-  $('#overlay').click(function(){
-    $(this).css("display","none"); 
-    $('.card-selected.flex').removeClass('flex');
-    $('#output, #vehicles').addClass('flex');
+       $("#origin").css("display","flex");
+       $("#controls").css("display","flex");
+       var t7 = gsap.timeline({defaults:{duration: 0.2, ease: Power1.easeOut}})
+       t7.to("#output, #vehicles", {opacity: 0, scaleX:0.8, scaleY:0.8})
+       var t8 = gsap.timeline({defaults:{duration: 0.2, ease: Power1.easeIn}})
+       t8.to("#origin, #controls", {opacity: 1, scaleX:1, scaleY:1, stagger: 0.2}, "+=1")
+       $("#output").css("display","none");
+       $("#vehicles").css("display","none");
   });
 
 });

@@ -328,7 +328,11 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       function(response, status) {
         if (status === 'OK') {
           me.directionsRenderer.setDirections(response);
+          
+          var t5 = gsap.timeline({defaults:{duration: 0.5, ease: Power1.easeInOut}})
 
+          t5.to("#origin, #controls", {opacity: 0, scaleX:0.8, scaleY:0.8, stagger: 0.1})
+          
           var infowindow = new google.maps.InfoWindow();
 
             var marker = new google.maps.Marker({
@@ -341,6 +345,20 @@ AutocompleteDirectionsHandler.prototype.route = function() {
           infowindow.setPosition(response.routes[0].legs[0].end_location);
           infowindow.open(this.map, marker);
           
+          
+          $("#origin").css("display","none");
+          
+          $("#controls").css("display","none");
+          
+          var t6 = gsap.timeline({defaults:{duration: 0.5, ease: Power1.easeInOut}})
+
+          t6.from("#output, #vehicles", {opacity: 0, scaleX:0.8, scaleY:0.8, stagger: 0.5})
+
+          var t7 = gsap.timeline({defaults:{duration: 0.5, ease: Power1.easeInOut}})
+
+          t7.to("#output, #vehicles", {opacity: 1, scaleX:1, scaleY:1, stagger: 0.5},)
+
+          $('#output, #vehicles').addClass('flex');
    
         } else {
           window.alert('Directions request failed due to ' + status);
@@ -361,10 +379,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       document.getElementById("pick-up").innerHTML = pick;
    
       document.getElementById("drop-off").innerHTML = drop;
-
-      $('#origin, #controls').addClass('none');
-  
-      $('#output, #vehicles').addClass('flex');
+ 
   
     var bounds = new google.maps.LatLngBounds();
 
