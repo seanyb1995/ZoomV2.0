@@ -19,7 +19,7 @@
     </div>
     <!--image-->
     <div class="image">
-      <img src="https://image.shutterstock.com/image-illustration/white-elegant-car-top-view-260nw-1298950867.jpg">
+      <img src="img/png/tesla-s-model-top-view.png">
     </div>
   </div>
   <!--trip details-->

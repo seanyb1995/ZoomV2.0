@@ -17,6 +17,7 @@ Index Styling
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
     
     .mobile {
       width: 361px;
@@ -68,7 +69,7 @@ Index Styling
         height: 100%;
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: end;
         align-items: center;
         flex-direction: column;
         -moz-transition: all 700ms ease-out;
@@ -94,6 +95,7 @@ Index Styling
           transform-origin: center;
           transition: all 0.3s ease;
           opacity: 1;
+          z-index: 1;
 
           .icon {
             display: flex;
@@ -423,7 +425,7 @@ Index Styling
       
       #login,
       #index {
-        margin-top: 150px;
+        margin-bottom: 150px;
       }
       
       #dashboard {
@@ -710,6 +712,8 @@ Index Media Queries
     .content {
       
       .container {
+        min-height: 812px;
+        height: 812px;
         
         .mobile {
           width: 100%;

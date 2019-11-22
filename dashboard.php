@@ -39,6 +39,13 @@ include('request.php');
         <!--welcome message-->
         <h1><?php // echo $_SESSION['success']; ?></h1>
         <form id="dashboard" action="dashboard.php" method="POST">
+          <!--menu-->
+          <div class="side-menu">
+            <label class="sidenav" id="menu">
+              <p><a href="login.php?logout='1'">Logout</a></p>
+              <i class="fas fa-angle-left"></i>
+            </label>
+          </div>
           <div id="overlay"></div>
          <!--ride info-->
          <?php include('section-trip-info.php'); ?>
@@ -93,7 +100,6 @@ include('request.php');
             </div>
           </div>
         </form>
-        <p><a href="login.php?logout='1'">Logout</a></p>
         <!--google map-->
         <div id="map"></div>
       </div>
@@ -108,7 +114,8 @@ include('request.php');
   <script src="https://kit.fontawesome.com/845c12c9ef.js" crossorigin="anonymous" type="text/javascript"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAywbPa8_RyuamLyD_kxoMxZnvhsw9JKY&libraries=places&callback=initMap"type="text/javascript"></script>
   <script src="js/google.js" type="text/javascript"></script>
-  <script src="js/animations.js"></script>
+  <script src="js/animations.js" type="text/javascript"></script>
+  <script src="js/navigation.js" type="text/javascript"></script>
   
 </body>
 
